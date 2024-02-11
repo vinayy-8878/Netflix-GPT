@@ -23,10 +23,10 @@
 - Browse(after authentication)
     - Header
     - Main Movie
-            - Trailer in background
-            - Title &  Description
-            - Movie Suggestion
-                    - MovieLists * N
+         - Trailer in background
+         - Title &  Description
+         - Movie Suggestion
+            - MovieLists * N
 - Netflix GPT
     - Search Bar
     - Movie suggestion
