@@ -1,14 +1,23 @@
 import React, { useRef, useState } from 'react'
 import Header from './Header'
+// import { auth } from '../utils/firebase';
 import { checkValidData } from '../utils/validate';
+import {updateProfile, createUserWithEmailAndPassword,signInWithEmailAndPassword } from "firebase/auth";
+import {useNavigate} from 'react-router-dom'
+import { auth } from '../utils/firebase'
+import {useDispatch} from 'react-redux'
+import {addUser} from '../utils/userSlice'
 const Login = () => {
+  const dispatch=useDispatch();
     const [isSignInForm,setIsSignInForm]=useState(true);
    const email=useRef(null);
    const name=useRef(null);
+   const navigate=useNavigate();
    const [errorMessage,setErrorMessage]=useState(null)
    const password=useRef(null);
     const toggleSignInForm=()=>{
         setIsSignInForm(!isSignInForm);
+        setErrorMessage(null);
     };
     const handleButtonClick=()=>{
       // console.log(email.current.value);
@@ -17,6 +26,51 @@ const Login = () => {
       const message = !isSignInForm ? checkValidData(email.current.value, password.current.value, name.current?.value) : checkValidData(email.current.value, password.current.value,null);
 
       setErrorMessage(message)
+      if(message) return;
+  if(!isSignInForm){
+    createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+    .then((userCredential) => {
+      
+      const user = userCredential.user;
+  //  console.log(user)
+  updateProfile(user, {
+    displayName: name.current.value, photoURL: "https://avatars.githubusercontent.com/u/72222842?s=400&v=4"
+  }).then(() => {
+    const {uid,email,displayName,photoURL} = auth.currentUser;
+    dispatch(addUser({uid:uid,email:email,displayName:displayName,photoURL:photoURL}))
+     navigate('/browse');
+  }).catch((error) => {
+     setErrorMessage(error.message)
+  });
+ 
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // setErrorMessage(errorCode + " "+ errorMessage)
+    if(errorCode==='auth/email-already-in-use'){
+      setErrorMessage('User already exists')
+    }
+    });
+  }
+  else{
+    signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    console.log(user);
+    navigate('/browse');
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // setErrorMessage(errorCode + "--- "+ errorMessage)
+    if(errorCode==='auth/invalid-credential'){
+      setErrorMessage('User does not exist')
+    }
+  });
+
+  }
     }
   return (
     <div>
