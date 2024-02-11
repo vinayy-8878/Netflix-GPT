@@ -1,6 +1,9 @@
 # Netfilx GPT
 - Create React App
 - Configured TailwindCSS
+- Header
+- Login
+- Signup
 
 # Features 
 - Login/Sign up
