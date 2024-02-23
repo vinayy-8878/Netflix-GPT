@@ -1,4 +1,5 @@
 # Netfilx GPT
+
 - Create React App
 - Configured TailwindCSS
 - Header
@@ -14,20 +15,21 @@
 - created redux store using userSlice
 - Implemented SignOut
 - Update profile api call
-- Fetch from tmdb movies
+- Bugfix:Signup user displayname and profile picture update
+- Bugfix: if the user is not logged in Redirect/ browse to login page and vice vers
 
-# Features 
+# Features
+
 - Login/Sign up
-    - Sign In /Sign up form
-    - redirect to Broese page
+  - Sign In /Sign up form
+  - redirect to Broese page
 - Browse(after authentication)
-    - Header
-    - Main Movie
-         - Trailer in background
-         - Title &  Description
-         - Movie Suggestion
-            - MovieLists * N
+  - Header
+  - Main Movie
+    - Trailer in background
+    - Title & Description
+    - Movie Suggestion
+      - MovieLists * N
 - Netflix GPT
-    - Search Bar
-    - Movie suggestion
-                           
+  - Search Bar
+  - Movie suggestion
