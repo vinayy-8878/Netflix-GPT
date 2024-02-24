@@ -29,7 +29,9 @@
 - Update store with trailer video data
 - Embedded the youtube video and made it autoplay with mute
 - Tailwind classes integrated in main container
-- Build secondary container
+- Build Secondary Container
+- Fetch movies from tmdb api and made movielist
+- Moviecard to display the movie
 
 # Features
 
