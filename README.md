@@ -21,7 +21,14 @@
 - Added hardcoded values to constant
 - Register for tmdb api & got access token
 - Get the data from tmdb api for now playing movies
-
+- Custom hook for now playing movies
+- Create movieSlice
+- Update store with movies data
+- Planning for main and secondary container
+- Fetch data for trailer video
+- Update store with trailer video data
+- Embedded the youtube video and made it autoplay with mute
+- Tailwind classes integrated in main container
 
 # Features
 
